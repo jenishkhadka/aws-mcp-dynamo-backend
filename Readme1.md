@@ -10,13 +10,19 @@
 
 ## 📸 Demo
 
-> AI writing to a real AWS DynamoDB database using natural language in Kiro IDE
+> AI writing to and querying a real AWS DynamoDB database using natural language in Kiro IDE
 
 ![Kiro MCP Connected](screenshots/kiro-mcp-connected.png)
 *Kiro IDE showing dynamodb Connected (10 tools)*
 
 ![AI Writing to DynamoDB](screenshots/kiro-put-item.png)
 *AI calling dynamodb_put_item MCP tool and writing to real AWS database*
+
+![Kiro Demo Result](screenshots/kiro-demo-result.png)
+*AI querying DynamoDB by age filter using dynamodb_scan MCP tool*
+
+![DynamoDB Table Items](screenshots/dynamodb-table-items.png)
+*Real data in DynamoDB Users table — 11 items returned*
 
 ---
 
@@ -176,8 +182,10 @@ chmod +x validate.sh check_env.sh apply.sh destroy.sh
 
 ### Step 3: Configure AWS Credentials
 
-Get your Access Keys from:
-`AWS Console → IAM → Users → Security Credentials → Create Access Key → CLI`
+Get your Access Keys from AWS Console:
+
+![IAM Create Access Key](screenshots/iam-create-access-key.png)
+*AWS Console → IAM → Security Credentials → Create Access Key → CLI*
 
 ```bash
 aws configure
@@ -210,9 +218,6 @@ Expected:
 ./check_env.sh
 ```
 
-![Environment Check](screenshots/check-env.png)
-*All tools verified and AWS credentials confirmed*
-
 Expected output:
 ```
 ===================================================================
@@ -236,9 +241,6 @@ Expected output:
 ```
 
 Type `yes` when prompted. Takes **2-5 minutes**.
-
-![Apply Complete](screenshots/apply-complete.png)
-*Terraform successfully deployed all AWS resources*
 
 ### Step 6: Get Your Generated Credentials
 
@@ -312,7 +314,10 @@ kiro
 6. Check bottom left: `dynamodb Connected (10 tools)` ✅
 
 ![Kiro MCP Config](screenshots/kiro-mcp-config.png)
-*MCP configuration in Kiro IDE mcp.json*
+*MCP configuration in Kiro IDE mcp.json with proxy connected*
+
+![Kiro MCP Connected](screenshots/kiro-mcp-connected.png)
+*Kiro IDE showing dynamodb Connected (10 tools) in bottom left*
 
 ---
 
@@ -321,14 +326,23 @@ kiro
 ![Lambda Functions](screenshots/lambda-functions.png)
 *11 Lambda functions deployed in AWS Console*
 
+![Lambda Code](screenshots/lambda-code.png)
+*dynamodb_ops.py — all Lambda handlers in one Python file*
+
 ![API Gateway Routes](screenshots/api-gateway-routes.png)
-*API Gateway with all DynamoDB routes*
+*API Gateway with all DynamoDB routes connected to Lambda*
+
+![API Gateway Auth](screenshots/api-gateway-auth.png)
+*API Gateway IAM authorization — SigV4 built-in*
 
 ![DynamoDB Table](screenshots/dynamodb-table.png)
-*Users table created in DynamoDB*
+*Users table created and active in DynamoDB*
+
+![DynamoDB Table Items](screenshots/dynamodb-table-items.png)
+*11 items in the Users table — written via AI natural language commands*
 
 ![Secrets Manager](screenshots/secrets-manager.png)
-*Credentials stored securely in AWS Secrets Manager*
+*IAM credentials stored securely in AWS Secrets Manager*
 
 | Resource | Name | Count |
 |----------|------|-------|
@@ -388,8 +402,12 @@ Count all items in the Users table
 Delete the item from Users table where userId is "user1"
 ```
 
+```
+Get user with age 99
+```
+
 ![Demo Result](screenshots/kiro-demo-result.png)
-*AI successfully writing to real AWS DynamoDB database*
+*AI scanning DynamoDB by filter and returning matched results*
 
 ---
 
