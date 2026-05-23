@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "dynamodb": {
+      "command": "bash",
+      "args": [
+        "proxy.sh"
+      ],
+      "env": {
+        "MCP_ACCESS_KEY_ID": "${AWS_ACCESS_KEY_ID}",
+        "MCP_SECRET_ACCESS_KEY": "${AWS_SECRET_ACCESS_KEY}",
+        "MCP_API_ENDPOINT": "${DYNAMODB_API_ENDPOINT}",
+        "MCP_REGION": "us-east-1"
+      },
+      "disabled": false,
+      "alwaysAllow": []
+    }
+  },
+  "instructions": "DynamoDB MCP Proxy - Enables AI assistant to perform DynamoDB operations through natural language.\n\n**Environment Variables Required:**\n- AWS_ACCESS_KEY_ID: IAM access key for dynamodb-mcp-proxy user\n- AWS_SECRET_ACCESS_KEY: IAM secret key for dynamodb-mcp-proxy user\n- DYNAMODB_API_ENDPOINT: API Gateway invoke URL (e.g., https://xxxx.execute-api.us-east-1.amazonaws.com/prod)\n\n**Example Kiro IDE Setup:**\n1. Set environment variables in your shell or Kiro IDE config\n2. Update DYNAMODB_API_ENDPOINT with your actual API Gateway URL (from apply.sh output)\n3. Ensure AWS credentials have permission for dynamodb-mcp-proxy role\n4. Start Kiro IDE - it will automatically connect to the proxy"
+}

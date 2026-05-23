@@ -51,6 +51,41 @@ AWS DynamoDB
 
 ---
 
+## Project Structure
+
+```
+aws-mcp-dynamo-backend/
+├── apply.sh                  # Deploy everything to AWS
+├── destroy.sh                # Remove all AWS resources
+├── check_env.sh              # Verify environment variables
+├── validate.sh               # Validate Terraform config
+├── README.md                 # This file
+├── Deployment.md             # Full setup guide
+├── 01-lambdas/
+│   ├── main.tf               # Lambda IAM roles and permissions
+│   ├── api.tf                # API Gateway HTTP API configuration
+│   ├── iam-proxy-user.tf     # MCP proxy IAM user and policy
+│   ├── sample-table.tf       # DynamoDB test table
+│   ├── lambda-get-item.tf    # GetItem Lambda
+│   ├── lambda-put-item.tf    # PutItem Lambda
+│   ├── lambda-update-item.tf # UpdateItem Lambda
+│   ├── lambda-delete-item.tf # DeleteItem Lambda
+│   ├── lambda-query.tf       # Query Lambda
+│   ├── lambda-scan.tf        # Scan Lambda
+│   ├── lambda-batch-get.tf   # BatchGetItem Lambda
+│   ├── lambda-list-tables.tf # ListTables Lambda
+│   ├── lambda-describe-table.tf # DescribeTable Lambda
+│   ├── lambda-count-items.tf # Count items Lambda
+│   ├── lambda-tools.tf       # Tool registry endpoint (/tools)
+│   └── code/
+│       └── dynamodb_ops.py   # All 11 Lambda handler functions
+└── 02-proxy/
+    ├── proxy.sh              # MCP proxy with SigV4 signing
+    └── mcp_config.json       # Kiro IDE MCP server configuration
+```
+
+---
+
 ## Tech Stack
 
 | Technology          | Purpose                    |
